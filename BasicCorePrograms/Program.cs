@@ -4,21 +4,25 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Write("Enter a number: ");
-        int number = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter an alphabet: ");
+        char alphabet = Convert.ToChar(Console.ReadLine());
 
-        if (IsEven(number))
+        if (IsVowel(alphabet))
         {
-            Console.WriteLine("The number is even.");
+            Console.WriteLine("The alphabet is a vowel.");
         }
         else
         {
-            Console.WriteLine("The number is odd.");
+            Console.WriteLine("The alphabet is a consonant.");
         }
     }
 
-    static bool IsEven(int number)
+    static bool IsVowel(char alphabet)
     {
-        return number % 2 == 0;
+        // Convert the alphabet to lowercase for case-insensitive comparison
+        alphabet = Char.ToLower(alphabet);
+
+        // Check if the alphabet is a vowel
+        return alphabet == 'a' || alphabet == 'e' || alphabet == 'i' || alphabet == 'o' || alphabet == 'u';
     }
 }
