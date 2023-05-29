@@ -2,35 +2,33 @@
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        Console.Write("Enter a year: ");
-        string input = Console.ReadLine();
-
-        if (int.TryParse(input, out int year) && IsFourDigitNumber(year))
+        if (args.Length == 1)
         {
-            if (IsLeapYear(year))
+            int n = Convert.ToInt32(args[0]);
+
+            if (n >= 0 && n < 31)
             {
-                Console.WriteLine($"{year} is a leap year.");
+                PrintPowersOfTwo(n);
             }
             else
             {
-                Console.WriteLine($"{year} is not a leap year.");
+                Console.WriteLine("Invalid input. Please provide a single command-line argument (0 <= N < 31).");
             }
         }
         else
         {
-            Console.WriteLine("Invalid input. Please enter a valid 4-digit year.");
+            Console.WriteLine("Invalid input. Please provide a single command-line argument (0 <= N < 31).");
         }
     }
 
-    static bool IsFourDigitNumber(int year)
+    static void PrintPowersOfTwo(int n)
     {
-        return year >= 1000 && year <= 9999;
-    }
-
-    static bool IsLeapYear(int year)
-    {
-        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        for (int i = 0; i <= n; i++)
+        {
+            int powerOfTwo = Convert.ToInt32(Math.Pow(2, i));
+            Console.WriteLine($"2^{i} = {powerOfTwo}");
+        }
     }
 }
