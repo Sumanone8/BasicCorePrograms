@@ -4,33 +4,33 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Enter the number of times to flip the coin: ");
+        Console.Write("Enter a year: ");
         string input = Console.ReadLine();
 
-        if (int.TryParse(input, out int numberOfFlips) && numberOfFlips > 0)
+        if (int.TryParse(input, out int year) && IsFourDigitNumber(year))
         {
-            int headsCount = 0;
-            int tailsCount = 0;
-
-            Random random = new Random();
-
-            for (int i = 0; i < numberOfFlips; i++)
+            if (IsLeapYear(year))
             {
-                if (random.NextDouble() < 0.5)
-                    tailsCount++;
-                else
-                    headsCount++;
+                Console.WriteLine($"{year} is a leap year.");
             }
-
-            double headsPercentage = (double)headsCount / numberOfFlips * 100;
-            double tailsPercentage = (double)tailsCount / numberOfFlips * 100;
-
-            Console.WriteLine($"Percentage of Heads: {headsPercentage}%");
-            Console.WriteLine($"Percentage of Tails: {tailsPercentage}%");
+            else
+            {
+                Console.WriteLine($"{year} is not a leap year.");
+            }
         }
         else
         {
-            Console.WriteLine("Invalid input. Please enter a positive integer.");
+            Console.WriteLine("Invalid input. Please enter a valid 4-digit year.");
         }
+    }
+
+    static bool IsFourDigitNumber(int year)
+    {
+        return year >= 1000 && year <= 9999;
+    }
+
+    static bool IsLeapYear(int year)
+    {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 }
