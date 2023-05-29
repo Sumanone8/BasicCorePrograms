@@ -8,27 +8,32 @@ class Program
         {
             int n = Convert.ToInt32(args[0]);
 
-            if (n >= 0 && n < 31)
+            if (n != 0)
             {
-                PrintPowersOfTwo(n);
+                double harmonicNumber = ComputeHarmonicNumber(n);
+                Console.WriteLine($"The {n}th Harmonic Value: {harmonicNumber}");
             }
             else
             {
-                Console.WriteLine("Invalid input. Please provide a single command-line argument (0 <= N < 31).");
+                Console.WriteLine("Invalid input. N should be a non-zero value.");
             }
         }
         else
         {
-            Console.WriteLine("Invalid input. Please provide a single command-line argument (0 <= N < 31).");
+            Console.WriteLine("Invalid input. Please provide a single command-line argument.");
         }
     }
 
-    static void PrintPowersOfTwo(int n)
+    static double ComputeHarmonicNumber(int n)
     {
-        for (int i = 0; i <= n; i++)
+        double harmonicSum = 0;
+
+        for (int i = 1; i <= n; i++)
         {
-            int powerOfTwo = Convert.ToInt32(Math.Pow(2, i));
-            Console.WriteLine($"2^{i} = {powerOfTwo}");
+            harmonicSum += 1.0 / i;
         }
+
+        return harmonicSum;
     }
 }
+
