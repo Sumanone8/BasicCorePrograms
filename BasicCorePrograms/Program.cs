@@ -6,16 +6,16 @@ class Program
     {
         if (args.Length == 1)
         {
-            int n = Convert.ToInt32(args[0]);
+            int number = Convert.ToInt32(args[0]);
 
-            if (n != 0)
+            if (number > 0)
             {
-                double harmonicNumber = ComputeHarmonicNumber(n);
-                Console.WriteLine($"The {n}th Harmonic Value: {harmonicNumber}");
+                Console.Write($"Prime factors of {number}: ");
+                PrintPrimeFactors(number);
             }
             else
             {
-                Console.WriteLine("Invalid input. N should be a non-zero value.");
+                Console.WriteLine("Invalid input. Number should be a positive integer.");
             }
         }
         else
@@ -24,16 +24,23 @@ class Program
         }
     }
 
-    static double ComputeHarmonicNumber(int n)
+    static void PrintPrimeFactors(int number)
     {
-        double harmonicSum = 0;
-
-        for (int i = 1; i <= n; i++)
+        for (int i = 2; i * i <= number; i++)
         {
-            harmonicSum += 1.0 / i;
+            while (number % i == 0)
+            {
+                Console.Write($"{i} ");
+                number /= i;
+            }
         }
 
-        return harmonicSum;
+        if (number > 1)
+        {
+            Console.Write($"{number} ");
+        }
+
+        Console.WriteLine();
     }
 }
 
